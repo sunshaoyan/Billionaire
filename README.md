@@ -238,11 +238,12 @@ smart frame in encoded by protobuf. if error code is nagative value, data will b
 请参考[python库定制化开发指南](http://gitlab.hobot.cc/ptd/experimental/alg/eevee/awesome/bilionaire/tree/master/src)
 
 # 问题反馈与沟通
-欢迎同学们在Wiki页面下留言沟通或提出问题。
+欢迎同学们在Wiki页面下留言沟通或直接联系开发团队成员提出问题。
 
 wiki地址：[Bilionaire 沟通](http://wiki.hobot.cc/pages/viewpage.action?pageId=77975049)
 
 # 团队成员
+
 - 孙韶言
 - 张捷
 - 刘宇轩

@@ -47,5 +47,3 @@ else(${PYTHON_V2})
 target_link_libraries(hobotx2 python3.7m _hbipc_ap)
 endif(${PYTHON_V2})
 
-add_subdirectory(sample)
-
