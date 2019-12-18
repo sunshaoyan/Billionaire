@@ -238,3 +238,10 @@ smart frame in encoded by protobuf. if error code is nagative value, data will b
 欢迎同学们在Wiki页面下留言沟通或提出问题。
 
 wiki地址：[Bilionaire 沟通](http://wiki.hobot.cc/pages/viewpage.action?pageId=77975049)
+
+# 团队成员
+- 孙韶言
+- 张捷
+- 刘宇轩
+- 李明琦
+- 吴庭丞
