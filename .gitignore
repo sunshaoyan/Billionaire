@@ -1,3 +1,5 @@
 .idea/
 .pyc
 .py~
+.vscode/
+.DS_store

@@ -1,6 +1,6 @@
 # Bilionaire - 简单易用的X2芯片Python SDK
 
-![logo](logo.jpg)
+![logo](img/logo.jpg)
 
 地平线机器人 Sunrise™ 2 | 96Boards DragonBoard™ 410c
 
@@ -8,10 +8,37 @@ AP Python SDK
 
 Horizon Hackathon 2019 三万块团队荣誉出品
 
+# 简介
+本工程提供了在96Boards板上，方便快捷的在Python代码中获取地平线Sunrise™ 2芯片数据并展示的SDK。（人生苦短，我用python）
+
+如下框图，本SDK复用了上文标准配置中的CP端库与AP端驱动，并在上层封装了Python SDK，提供API供调用获取结构化数据。
+![structure](img/structure.png)
+
 # 使用方法
+本SDK使用的系统配置与环境为2019 Hackathon标准的配置环境。可参考Wiki上的[安装部署手册](http://wiki.hobot.cc/pages/viewpage.action?pageId=74423879)进行配置。
+
+安装完成后，在AP端`git clone`本项目，并将`lib/lib_hbipc_ap.so`复制到系统`/lib`目录下。
+
+此后，按部署教程在CP侧执行`./xpp_start.sh`启动cp侧程序，即可在ap侧执行`sample`文件夹下的示例代码。
+
+**注：本项目中的全部sample均需要在AP上使用sudo命令启动，如：**
+```sh
+sudo python3 smart.py
+```
+
+如需使用本SDK，只需要复制`sample`文件夹中的`hobotx2.so`库到任意位置，在Python代码中import：
+```py
+import hobotx2   # hobotx2.so
+```
+即可使用。
+
+示例详细使用方式请参考[Samples](#samples)与[API](#api)部分。
+
+### 自启动脚本
+因Hackathon Demo中提供的CP侧程序尚无重连机制，故每次程序重新启动均需要断电重启设备，所以强烈建议在CP侧部署自启动脚本。部署步骤如下：
 
 # Samples
-我们再`sample/`目录下提供了编译好的库文件`hobotx2.so`,以及三个示例代码文件，分别展示在三种不同场景下的使用方式。
+我们在`sample/`目录下提供了编译好的库文件`hobotx2.so`,以及三个示例代码文件，分别展示在三种不同场景下的使用方式。
 ## 1. 持续循环获取智能数据
 #### `sample/smart.py`
 在本示例中，我们使用一个无限循环，接收CP发出的智能数据。
@@ -161,3 +188,53 @@ if __name__ == '__main__':
 ```
 此处我们复用了前面的`X2WrapperThread`类对获取智能数据的循环进行封装，使用一个单独的线程运行。
 在本例中，我们使用`tornado`实现了一个简单的WebSocket服务，在WS Handler中，通过访问X2WrapperThread的实例与智能数据进行交互。
+
+# API
+#### init_smart
+hobot_x2.init_smart()
+
+Parameters:
+- void
+Returns:
+<int>
+
+- `0` if smart frame trans initialized successfully.
+- `-101` if smart frame trans has already been initialized.
+- `-21` connection to HBIPC_AP init failed.
+- `-22` provider app start failed.
+- `-23` AP <-> CP connection establish failed.
+
+#### deinit_smart
+hobot_x2.deinit_smart()
+
+Parameters:
+- void
+Returns:
+<int>
+
+- `0` if smart frame trans deinitialized successfully.
+- `-31` smart frame trans was not inited.
+
+#### read_smart_frame
+hobot_x2.read_smart_frame()
+
+Parameters:
+- void
+Returns:
+<tuple> [error code, data]
+
+error code <int>:
+- `0` get smart frame success.
+- `-41` smart frame trans was not inited.
+- Other negative value please check [API返回值](http://wiki.hobot.cc/pages/viewpage.action?pageId=53377803)
+
+data <byte>:
+smart frame in encoded by protobuf. if error code is nagative value, data will be `''`.
+
+# 定制化开发
+请参考[python库定制化开发指南](http://gitlab.hobot.cc/ptd/experimental/alg/eevee/awesome/bilionaire/tree/master/src)
+
+# 问题反馈与沟通
+欢迎同学们在Wiki页面下留言沟通或提出问题。
+
+wiki地址：[Bilionaire 沟通](http://wiki.hobot.cc/pages/viewpage.action?pageId=77975049)
