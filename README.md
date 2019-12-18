@@ -6,7 +6,7 @@
 
 AP Python SDK
 
-Horizon Hackathon 2019 三万块团队荣誉出品
+**Horizon Hackathon 2019 三万块团队荣誉出品**
 
 # 简介
 本工程提供了在96Boards板上，方便快捷的在Python代码中获取地平线Sunrise™ 2芯片数据并展示的SDK。（人生苦短，我用python）
@@ -36,6 +36,9 @@ import hobotx2   # hobotx2.so
 
 ### 自启动脚本
 因Hackathon Demo中提供的CP侧程序尚无重连机制，故每次程序重新启动均需要断电重启设备，所以强烈建议在CP侧部署自启动脚本。部署步骤如下：
+1. 复制本SDK`init`文件夹中`initx2.sh`脚本到**CP侧**的`/etc/init.d`文件夹中。
+2. 在**CP侧**的`/etc/init.d`文件夹中执行`chmod +x initx2.sh`为脚本添加可执行权限。
+3. 在`/etc/init.d`文件夹中执行`update-rc.d initx2.sh defaults 99`添加开机启动项。
 
 # Samples
 我们在`sample/`目录下提供了编译好的库文件`hobotx2.so`,以及三个示例代码文件，分别展示在三种不同场景下的使用方式。
