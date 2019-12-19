@@ -43,8 +43,8 @@ import hobotx2   # hobotx2.so
 
 在AP侧，需每次重启后确认AP端已执行
 ```sh
-sudo ./410c_bif_depoly.sh
-sudo ./single_pix_stream.sh
+sudo ~/ap_base/410c_bif_depoly.sh
+sudo ~/ap_base/single_pix_stream.sh
 ```
 指令安装驱动。
 
