@@ -16,8 +16,9 @@ AP Python SDK
 
 # 使用方法
 本SDK使用的系统配置与环境为2019 Hackathon标准的配置环境。可参考Wiki上的[安装部署手册](http://wiki.hobot.cc/pages/viewpage.action?pageId=74423879)进行配置。
+(其中`ap_base.tar.gz`文件请选择【bif内核模块版本2.9.0，hbipc接口库版本2.4.0】对应文件 )
 
-安装完成后，在AP端`git clone`本项目，并将`lib/lib_hbipc_ap.so`复制到系统`/lib`目录下。
+然后在AP端`git clone`本项目，并将`lib/lib_hbipc_ap.so`复制到系统`/lib`目录下。
 
 此后，按部署教程在CP侧执行`./xpp_start.sh`启动cp侧程序，即可在ap侧执行`sample`文件夹下的示例代码。
 
@@ -35,10 +36,17 @@ import hobotx2   # hobotx2.so
 示例详细使用方式请参考[Samples](#samples)与[API](#api)部分。
 
 ### 自启动脚本
-因Hackathon Demo中提供的CP侧程序尚无重连机制，故每次程序重新启动均需要断电重启设备，所以强烈建议在CP侧部署自启动脚本。部署步骤如下：
+因Hackathon Demo中提供的CP侧程序尚无重连机制，故每次程序重新启动均需要断电重启设备，所以强烈建议在CP/AP侧部署自启动脚本。部署步骤如下：
 1. 复制本SDK`init`文件夹中`initx2.sh`脚本到**CP侧**的`/etc/init.d`文件夹中。
 2. 在**CP侧**的`/etc/init.d`文件夹中执行`chmod +x initx2.sh`为脚本添加可执行权限。
 3. 在`/etc/init.d`文件夹中执行`update-rc.d initx2.sh defaults 99`添加开机启动项。
+
+在AP侧，需每次重启后确认AP端已执行
+```sh
+sudo ./410c_bif_depoly.sh
+sudo ./single_pix_stream.sh
+```
+指令安装驱动。
 
 # Samples
 我们在`sample/`目录下提供了编译好的库文件`hobotx2.so`,以及三个示例代码文件，分别展示在三种不同场景下的使用方式。
