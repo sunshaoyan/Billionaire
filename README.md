@@ -37,16 +37,15 @@ import hobotx2   # hobotx2.so
 
 ### 自启动脚本
 因Hackathon Demo中提供的CP侧程序尚无重连机制，故每次程序重新启动均需要断电重启设备，所以强烈建议在CP/AP侧部署自启动脚本。部署步骤如下：
+#### CP侧
 1. 复制本SDK`init`文件夹中`initx2.sh`脚本到**CP侧**的`/etc/init.d`文件夹中。
 2. 在**CP侧**的`/etc/init.d`文件夹中执行`chmod +x initx2.sh`为脚本添加可执行权限。
 3. 在`/etc/init.d`文件夹中执行`update-rc.d initx2.sh defaults 99`添加开机启动项。
 
-在AP侧，需每次重启后确认AP端已执行
-```sh
-sudo ~/ap_base/410c_bif_depoly.sh
-sudo ~/ap_base/single_pix_stream.sh
-```
-指令安装驱动。
+#### AP侧
+1. 复制本SDK`init`文件夹中`initap.sh`脚本到**AP侧**的`/etc/init.d`文件夹中。
+2. 在**CP侧**的`/etc/init.d`文件夹中执行`chmod +x initap.sh`为脚本添加可执行权限。
+3. 在`/etc/init.d`文件夹中执行`update-rc.d initap.sh defaults 99`添加开机启动项。
 
 # Samples
 我们在`sample/`目录下提供了编译好的库文件`hobotx2.so`,以及三个示例代码文件，分别展示在三种不同场景下的使用方式。
