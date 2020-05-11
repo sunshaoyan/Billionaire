@@ -15,7 +15,7 @@ AP Python SDK
 ![structure](img/structure.png)
 
 # 使用方法
-本SDK使用的系统配置与环境为2019 Hackathon标准的配置环境。可参考Wiki上的[安装部署手册](http://wiki.hobot.cc/pages/viewpage.action?pageId=74423879)进行配置。
+本SDK使用的系统配置与环境为2019 Hackathon标准的配置环境。可参考地平线提供的安装部署手册。
 (其中`ap_base.tar.gz`文件请选择【bif内核模块版本2.9.0，hbipc接口库版本2.4.0】对应文件 )
 
 然后在AP端`git clone`本项目，并将`lib/lib_hbipc_ap.so`复制到系统`/lib`目录下。
@@ -236,23 +236,7 @@ Returns:
 error code <int>:
 - `0` get smart frame success.
 - `-41` smart frame trans was not inited.
-- Other negative value please check [API返回值](http://wiki.hobot.cc/pages/viewpage.action?pageId=53377803)
+- Other negative value please check Horizon Robotics SDK API.
 
 data <byte>:
 smart frame in encoded by protobuf. if error code is nagative value, data will be `''`.
-
-# 定制化开发
-请参考[python库定制化开发指南](http://gitlab.hobot.cc/ptd/experimental/alg/eevee/awesome/bilionaire/tree/master/src)
-
-# 问题反馈与沟通
-欢迎同学们在Wiki页面下留言沟通或直接联系开发团队成员提出问题。
-
-wiki地址：[Bilionaire 沟通](http://wiki.hobot.cc/pages/viewpage.action?pageId=77975049)
-
-# 团队成员
-
-- 孙韶言
-- 张捷
-- 刘宇轩
-- 李明琦
-- 吴庭丞
